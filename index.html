@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>METROCÚBICO — Intranet</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --negro:#0e0e0e;
+  --negro2:#161616;
+  --negro3:#1e1e1e;
+  --negro4:#282828;
+  --principal:#978794;
+  --principal-claro:#b8a8b6;
+  --principal-oscuro:#6e617c;
+  --principal-bg:rgba(151,135,148,0.08);
+  --principal-border:rgba(151,135,148,0.22);
+  --gris-medio:#555555;
+  --blanco:#ffffff;
+  --blanco-suave:#f0eef0;
+  --mostaza:#A17E21;
+  --mostaza-bg:rgba(161,126,33,0.09);
+  --mostaza-border:rgba(161,126,33,0.28);
+  --azul:#072C52;
+  --azul-medio:#0d4a8a;
+  --azul-claro:#1a6abf;
+  --verde:#2e7d52;
+  --rojo:#c0392b;
+  --font:'Montserrat',sans-serif;
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--negro);font-family:var(--font);color:var(--blanco);font-size:14px;line-height:1.6;overflow-x:hidden}
+
+/* ── TOPBAR ── */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(14,14,14,0.97);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--principal-border);
+  padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;height:58px;
+}
+
+.logo{
+  font-family:var(--font);font-weight:900;font-size:17px;
+  letter-spacing:2.5px;color:var(--blanco);text-transform:uppercase;
+  display:flex;align-items:center;gap:10px;
+}
+.logo-mark{
+  width:32px;height:32px;background:var(--principal);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:900;color:var(--negro);letter-spacing:-1px;
+}
+.logo-text{color:var(--blanco)}
+.logo-text .accent{color:var(--principal)}
+
+.nav{display:flex;gap:4px;align-items:center}
+.nav a{
+  font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--gris-medio);text-decoration:none;padding:6px 11px;
+  transition:color .2s,background .2s;
+}
+.nav a:hover,.nav a.active{color:var(--principal);background:var(--principal-bg)}
+
+.topbar-right{display:flex;align-items:center;gap:14px}
+.greeting{font-size:12px;color:var(--gris-medio);font-weight:400}
+.greeting strong{color:var(--principal-claro);font-weight:600}
+.date-badge{
+  font-size:10px;font-weight:600;letter-spacing:.5px;
+  color:var(--principal);background:var(--principal-bg);
+  border:1px solid var(--principal-border);padding:4px 10px;
+}
+
+/* ── TICKER ── */
+.ticker-wrap{
+  background:var(--principal);overflow:hidden;
+  padding:0;height:30px;display:flex;align-items:center;
+}
+.ticker-label{
+  background:var(--negro4);color:var(--principal);
+  font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:0 14px;height:100%;display:flex;align-items:center;
+  white-space:nowrap;flex-shrink:0;
+  border-right:1px solid rgba(151,135,148,.2);
+}
+.ticker-track{
+  display:flex;animation:ticker 38s linear infinite;white-space:nowrap;
+}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{
+  font-size:11px;font-weight:600;color:var(--negro);
+  padding:0 30px 0 0;white-space:nowrap;
+}
+.ticker-sep{color:rgba(0,0,0,.3);margin-right:28px}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── HERO ── */
+.hero{
+  background:var(--negro2);
+  border-bottom:1px solid #222;
+  padding:52px 40px 44px;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;right:-60px;top:-60px;
+  width:380px;height:380px;
+  border:1px solid var(--principal-border);border-radius:50%;pointer-events:none;
+}
+.hero::before{
+  content:'';position:absolute;left:-50px;bottom:-70px;
+  width:220px;height:220px;
+  border:1px solid rgba(151,135,148,.07);border-radius:50%;pointer-events:none;
+}
+.hero-deco{
+  position:absolute;right:40px;top:50%;transform:translateY(-50%);
+  font-size:140px;font-weight:900;color:rgba(151,135,148,.04);
+  letter-spacing:-8px;line-height:1;pointer-events:none;user-select:none;
+  font-family:var(--font);text-transform:uppercase;
+}
+.hero-inner{max-width:680px;position:relative;z-index:1}
+.hero-eyebrow{
+  font-size:10px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--principal);margin-bottom:14px;
+}
+.hero-title{
+  font-size:42px;font-weight:900;line-height:1.04;
+  color:var(--blanco);letter-spacing:-1.5px;margin-bottom:12px;
+}
+.hero-title em{font-style:normal;color:var(--principal)}
+.hero-sub{
+  font-size:14px;font-weight:400;color:rgba(240,238,240,.5);
+  line-height:1.75;max-width:520px;margin-bottom:28px;
+}
+.hero-pills{display:flex;gap:7px;flex-wrap:wrap}
+.pill{
+  font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  padding:5px 12px;border:1px solid rgba(151,135,148,.2);color:rgba(240,238,240,.4);
+  cursor:pointer;transition:all .2s;
+}
+.pill:hover,.pill.active{
+  border-color:var(--principal);color:var(--principal);background:var(--principal-bg);
+}
+
+/* ── LAYOUT ── */
+.main{padding:40px;display:grid;grid-template-columns:1fr 310px;gap:32px;max-width:1280px;margin:0 auto}
+
+/* ── SECCIÓN LABEL ── */
+.sec-label{
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--principal);margin-bottom:18px;display:flex;align-items:center;gap:12px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:#222}
+
+/* ── CARRUSEL ── */
+.carousel-box{position:relative;margin-bottom:32px}
+.c-track-wrap{overflow:hidden}
+.c-track{display:flex;transition:transform .55s cubic-bezier(.25,.1,.25,1)}
+.c-slide{min-width:100%}
+.c-card{
+  background:var(--negro3);border:1px solid #252525;overflow:hidden;
+  cursor:pointer;transition:border-color .25s;
+}
+.c-card:hover{border-color:var(--principal)}
+.c-visual{
+  height:200px;display:flex;align-items:center;justify-content:center;
+  font-size:68px;position:relative;overflow:hidden;
+}
+.c-visual.obras{background:linear-gradient(135deg,#0d1b2a,#1a2a38)}
+.c-visual.cchh{background:linear-gradient(135deg,#1a1228,#251535)}
+.c-visual.tech{background:linear-gradient(135deg,#081530,#0d2040)}
+.c-visual.admin{background:linear-gradient(135deg,#1e1810,#2a2010)}
+
+/* línea de color por área en visual */
+.c-visual::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:var(--principal);
+}
+.c-visual.tech::after{background:var(--azul-claro)}
+.c-visual.admin::after{background:var(--mostaza)}
+.c-visual.cchh::after{background:var(--verde)}
+
+.c-body{padding:22px 24px}
+.c-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--principal);border:1px solid var(--principal-border);
+  padding:3px 9px;margin-bottom:10px;
+}
+.c-tag.azul{color:var(--azul-claro);border-color:rgba(26,106,191,.3)}
+.c-tag.verde{color:#4caf7d;border-color:rgba(76,175,125,.3)}
+.c-tag.mostaza{color:var(--mostaza);border-color:var(--mostaza-border)}
+.c-h{font-size:20px;font-weight:800;color:var(--blanco);line-height:1.2;margin-bottom:8px;letter-spacing:-.3px}
+.c-p{font-size:13px;font-weight:400;color:rgba(240,238,240,.5);line-height:1.65;margin-bottom:14px}
+.c-meta{font-size:11px;color:var(--gris-medio);font-weight:500}
+.c-meta span{color:var(--principal-claro)}
+
+.c-nav{
+  position:absolute;top:100px;width:34px;height:34px;
+  background:rgba(0,0,0,.75);border:1px solid #333;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:var(--blanco);cursor:pointer;z-index:5;
+  transition:all .2s;user-select:none;
+}
+.c-nav:hover{background:var(--principal);color:var(--negro);border-color:var(--principal)}
+.c-prev{left:0}.c-next{right:0}
+.c-dots{display:flex;gap:6px;justify-content:center;padding:14px 0 0}
+.cdot{width:5px;height:5px;border-radius:50%;background:#333;cursor:pointer;transition:all .2s}
+.cdot.on{background:var(--principal);width:18px;border-radius:3px}
+
+/* ── NEWS GRID ── */
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
+.news-card{
+  background:var(--negro3);border:1px solid #252525;border-left:3px solid var(--principal-border);
+  padding:16px 15px;cursor:pointer;transition:border-color .2s,transform .2s;
+}
+.news-card:hover{border-left-color:var(--principal);border-color:var(--principal-border);transform:translateY(-2px)}
+.n-area{
+  font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--principal);margin-bottom:7px;
+}
+.n-icon{font-size:20px;margin-bottom:8px;display:block}
+.n-title{font-size:13px;font-weight:700;color:var(--blanco);line-height:1.3;margin-bottom:5px}
+.n-desc{font-size:11px;font-weight:400;color:rgba(240,238,240,.4);line-height:1.5}
+
+/* ── TECH ── */
+.tech-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid #1c1c1c;
+}
+.tech-item:last-child{border-bottom:none}
+.tech-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--principal);flex-shrink:0;margin-top:5px;
+}
+.tech-dot.mostaza{background:var(--mostaza)}
+.tech-dot.azul{background:var(--azul-claro)}
+.tech-tag{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--principal);margin-bottom:3px}
+.tech-tag.mostaza{color:var(--mostaza)}
+.tech-tag.azul{color:var(--azul-claro)}
+.tech-title{font-size:13px;font-weight:600;color:var(--blanco);line-height:1.3;margin-bottom:3px}
+.tech-desc{font-size:11px;font-weight:400;color:rgba(240,238,240,.42);line-height:1.5}
+
+/* ── SIDEBAR ── */
+.welcome-card{
+  background:var(--negro3);
+  border:1px solid #252525;
+  border-top:3px solid var(--principal);
+  padding:20px 18px;margin-bottom:20px;
+}
+.wc-day{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(240,238,240,.35);margin-bottom:4px}
+.wc-title{font-size:18px;font-weight:800;color:var(--blanco);margin-bottom:4px;line-height:1.2}
+.wc-title span{color:var(--principal)}
+.wc-sub{font-size:11px;color:rgba(240,238,240,.35);font-weight:400;line-height:1.5}
+
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px}
+.quick-btn{
+  background:var(--negro3);border:1px solid #252525;padding:13px 10px;
+  text-align:center;cursor:pointer;transition:all .2s;text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+}
+.quick-btn:hover{border-color:var(--principal);background:var(--principal-bg)}
+.q-icon{font-size:20px}
+.q-label{font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--gris-medio);transition:color .2s}
+.quick-btn:hover .q-label{color:var(--principal)}
+
+.sidebar-card{
+  background:var(--negro3);border:1px solid #252525;
+  border-top:2px solid var(--principal);
+  padding:16px 15px;margin-bottom:16px;
+}
+.sidebar-title{
+  font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--principal);margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.sidebar-title::after{content:'';flex:1;height:1px;background:#222}
+
+.proj-row{padding:10px 0;border-bottom:1px solid #1c1c1c}
+.proj-row:last-child{border-bottom:none}
+.proj-name{font-size:12px;font-weight:600;color:var(--blanco);margin-bottom:5px}
+.proj-bar{height:2px;background:#242424;margin-bottom:5px}
+.proj-fill{height:100%;background:var(--principal);transition:width .8s ease}
+.proj-fill.azul{background:var(--azul-claro)}
+.proj-fill.mostaza{background:var(--mostaza)}
+.proj-fill.lite{background:var(--principal-claro)}
+.proj-footer{display:flex;justify-content:space-between;align-items:center}
+.proj-pct{font-size:11px;font-weight:700;color:var(--principal-claro)}
+.proj-badge{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px}
+.badge-ok{background:rgba(46,125,82,.12);color:#4caf7d}
+.badge-warn{background:rgba(161,126,33,.12);color:var(--mostaza)}
+.badge-init{background:var(--principal-bg);color:var(--principal)}
+
+.bday-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1c1c1c}
+.bday-row:last-child{border-bottom:none}
+.bday-avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--principal-bg);border:1px solid var(--principal-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--principal);flex-shrink:0;
+}
+.bday-name{font-size:12px;font-weight:600;color:var(--blanco)}
+.bday-detail{font-size:10px;color:var(--gris-medio);font-weight:400}
+
+.ev-row{padding:9px 0;border-bottom:1px solid #1c1c1c}
+.ev-row:last-child{border-bottom:none}
+.ev-name{font-size:12px;font-weight:600;color:var(--blanco);margin-bottom:2px}
+.ev-detail{font-size:10px;color:var(--gris-medio);font-weight:400}
+
+.quote-card{
+  background:var(--negro4);border-left:3px solid var(--principal);
+  padding:16px 15px;margin-bottom:16px;
+}
+.q-text{font-size:13px;font-weight:600;color:var(--principal-claro);line-height:1.55;margin-bottom:7px;font-style:italic}
+.q-author{font-size:10px;color:var(--principal-oscuro);font-weight:500;letter-spacing:.5px}
+
+/* ── FOOTER ── */
+footer{
+  background:#080808;border-top:1px solid var(--principal-border);
+  padding:22px 40px;display:flex;align-items:center;justify-content:space-between;
+}
+.ft-logo{font-size:13px;font-weight:900;color:var(--principal);letter-spacing:2px;text-transform:uppercase}
+.ft-copy{font-size:10px;color:#3a3a3a;letter-spacing:.5px}
+.ft-links{display:flex;gap:14px}
+.ft-links a{font-size:10px;color:#3a3a3a;text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--principal)}
+
+/* ── MODAL ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);
+  z-index:999;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--negro3);border:1px solid var(--principal-border);
+  border-top:3px solid var(--principal);
+  max-width:560px;width:100%;padding:32px;position:relative;
+}
+.modal-close{
+  position:absolute;top:14px;right:16px;
+  background:none;border:none;color:var(--gris-medio);font-size:20px;
+  cursor:pointer;line-height:1;transition:color .2s;
+}
+.modal-close:hover{color:var(--principal)}
+.modal-area{
+  font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--principal);margin-bottom:10px;
+}
+.modal-title{font-size:22px;font-weight:800;color:var(--blanco);line-height:1.2;margin-bottom:14px;letter-spacing:-.3px}
+.modal-body{font-size:13px;font-weight:400;color:rgba(240,238,240,.55);line-height:1.75}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#333}
+::-webkit-scrollbar-thumb:hover{background:var(--principal)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="logo">
+    <div class="logo-mark">M³</div>
+    <span class="logo-text">METROCÚBICO</span>
+  </div>
+  <nav class="nav">
+    <a href="#obras-sec">Obras</a>
+    <a href="#comercial-sec">Comercial</a>
+    <a href="#cchh-sec">CCHH</a>
+    <a href="#tech-sec">Tecnología</a>
+    <a href="#admin-sec">Admin</a>
+  </nav>
+  <div class="topbar-right">
+    <span class="greeting">Buen día, <strong>equipo 👋</strong></span>
+    <span class="date-badge" id="live-date">Cargando…</span>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-label">🔔 Novedades</div>
+  <div style="overflow:hidden;flex:1">
+    <div class="ticker-track">
+      <span class="ticker-item">🏗️ MIXT: losas casetonadas recuperables en implementación <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🤝 Nueva alianza con empresa Castillo en Yerba Buena <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">📚 Tercer año del ciclo de charlas ADEN — 20 Jun <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🤖 Microsoft 365 Copilot llega a toda la empresa en julio <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🏢 Proyectos activos: MIO · MIXT · MOVE · Multibox <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🚀 MOVE Etapa 2 abre reservas el 15 de junio <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🏗️ MIXT: losas casetonadas recuperables en implementación <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🤝 Nueva alianza con empresa Castillo en Yerba Buena <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">📚 Tercer año del ciclo de charlas ADEN — 20 Jun <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🤖 Microsoft 365 Copilot llega a toda la empresa en julio <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🏢 Proyectos activos: MIO · MIXT · MOVE · Multibox <span class="ticker-sep">·</span></span>
+      <span class="ticker-item">🚀 MOVE Etapa 2 abre reservas el 15 de junio <span class="ticker-sep">·</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco">M³</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Portal Interno · Junio 2026</div>
+    <h1 class="hero-title">Más volumen.<br><em>Más desarrollo.</em></h1>
+    <p class="hero-sub">Tu fuente de noticias, proyectos y novedades de toda la empresa. Todo lo que pasa en Metrocúbico, en un solo lugar.</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <div>
+
+    <!-- CARRUSEL -->
+    <div class="sec-label" id="obras-sec">Destacados</div>
+    <div class="carousel-box">
+      <div class="c-track-wrap">
+        <div class="c-track" id="ctrack">
+
+          <div class="c-slide">
+            <div class="c-card" onclick="openModal('Obras & Proyectos','Nueva alianza estratégica con empresa Castillo','En un exclusivo evento celebramos la alianza con la empresa Castillo para el desarrollo de un nuevo proyecto en uno de los puntos más cotizados de Yerba Buena. El terreno, ubicado sobre Av. Aconquija, contará con un desarrollo residencial premium que refuerza la presencia de Metrocúbico en el corredor norte de Tucumán. El proyecto estará orientado al segmento de alta gama y se proyecta iniciar obras en el primer trimestre de 2027.')">
+              <div class="c-visual obras">🤝</div>
+              <div class="c-body">
+                <span class="c-tag">Obras & Proyectos</span>
+                <h2 class="c-h">Nueva alianza estratégica con empresa Castillo</h2>
+                <p class="c-p">Un nuevo proyecto de alta gama en Yerba Buena que amplía nuestra presencia en el corredor norte de Tucumán.</p>
+                <span class="c-meta">9 junio 2026 · <span>1 min de lectura</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-slide">
+            <div class="c-card" onclick="openModal('Tecnología & IT','Microsoft 365 Copilot llega a toda la empresa en julio','A partir de julio, cada colaborador tendrá acceso a Copilot integrado en Teams, Outlook, Word y Excel. Permite resumir reuniones, redactar correos, generar documentos y analizar datos en lenguaje natural. Se realizarán capacitaciones durante junio para que todos puedan aprovecharlo desde el primer día. Esta iniciativa forma parte de la apuesta de Metrocúbico por la modernización y la eficiencia operativa.')">
+              <div class="c-visual tech">🤖</div>
+              <div class="c-body">
+                <span class="c-tag azul">Tecnología</span>
+                <h2 class="c-h">Microsoft 365 Copilot llega a toda la empresa en julio</h2>
+                <p class="c-p">IA integrada en Teams, Outlook, Word y Excel para todos los colaboradores. Capacitaciones disponibles en junio.</p>
+                <span class="c-meta">5 junio 2026 · <span>2 min de lectura</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-slide">
+            <div class="c-card" onclick="openModal('CCHH & Cultura','Tercer año del ciclo de charlas con ADEN','Metrocúbico retoma el ciclo de charlas empresariales junto a ADEN International Business School en su tercera edición. El ciclo reúne líderes de diversas industrias para compartir visiones sobre gestión, innovación y liderazgo. Los empleados pueden inscribirse a través de CCHH. Primera charla: 20 de junio en sede central. Ingreso libre para todo el personal.')">
+              <div class="c-visual cchh">🎓</div>
+              <div class="c-body">
+                <span class="c-tag verde">CCHH & Cultura</span>
+                <h2 class="c-h">Tercer año del ciclo de charlas con ADEN</h2>
+                <p class="c-p">Charlas empresariales junto a ADEN International Business School. Primera fecha: 20 de junio. ¡Inscribite!</p>
+                <span class="c-meta">23 abril 2026 · <span>2 min de lectura</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-slide">
+            <div class="c-card" onclick="openModal('Obras & Proyectos','Sistema de losas casetonadas recuperables en MIXT','En MIXT implementamos losas casetonadas recuperables, tecnología que reduce el peso propio de la estructura, optimiza el uso de hormigón y acelera los plazos sin comprometer la calidad estructural. Ya aplicado en pisos 3 a 6 de la torre principal. Este avance refleja el compromiso de Metrocúbico con la innovación en construcción sostenible.')">
+              <div class="c-visual obras">🏗️</div>
+              <div class="c-body">
+                <span class="c-tag">Obras & Proyectos</span>
+                <h2 class="c-h">Losas casetonadas recuperables en MIXT</h2>
+                <p class="c-p">Tecnología constructiva innovadora que optimiza el uso de hormigón y acelera los plazos de obra en MIXT.</p>
+                <span class="c-meta">15 mayo 2026 · <span>1 min de lectura</span></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <button class="c-nav c-prev" onclick="cNav(-1)">&#8592;</button>
+      <button class="c-nav c-next" onclick="cNav(1)">&#8594;</button>
+      <div class="c-dots" id="cdots">
+        <div class="cdot on" onclick="cGo(0)"></div>
+        <div class="cdot" onclick="cGo(1)"></div>
+        <div class="cdot" onclick="cGo(2)"></div>
+        <div class="cdot" onclick="cGo(3)"></div>
+      </div>
+    </div>
+
+    <!-- NOTICIAS -->
+    <div class="sec-label" id="comercial-sec">Noticias por área</div>
+    <div class="news-grid">
+
+      <div class="news-card" onclick="openModal('Comercial & Ventas','MIO Torre 2 — 85% de unidades comprometidas','La comercialización de MIO Torre 2 avanza con más del 85% comprometido. Quedan 4 unidades de 2 ambientes y 2 de 3 ambientes en pisos altos. El equipo comercial está tomando reservas con señas. Contactar a ventas para más información.')">
+        <span class="n-icon">🏢</span>
+        <div class="n-area">Comercial</div>
+        <div class="n-title">MIO Torre 2 — 85% de unidades comprometidas</div>
+        <div class="n-desc">Quedan pocas unidades. El equipo de ventas recibe reservas activamente.</div>
+      </div>
+
+      <div class="news-card" onclick="openModal('CCHH & Cultura','Actualización de beneficios — 2do semestre 2026','A partir de julio se renuevan los beneficios: se amplía la cobertura de salud, se suman días de home office flexibles y se incorpora un bono de conectividad mensual. Todos los detalles estarán en el Portal de CCHH esta semana.')">
+        <span class="n-icon">🎁</span>
+        <div class="n-area" id="cchh-sec">CCHH</div>
+        <div class="n-title">Nuevos beneficios para el 2do semestre</div>
+        <div class="n-desc">Más cobertura médica, home office flexible y bono de conectividad. Desde julio.</div>
+      </div>
+
+      <div class="news-card" onclick="openModal('Administración','Cierre contable — 1er semestre','El cierre contable se realizará el 30 de junio. Se solicita remitir todas las rendiciones y facturas pendientes antes del 25 de junio. Consultas con Lucía Torres.')">
+        <span class="n-icon">📋</span>
+        <div class="n-area" id="admin-sec">Administración</div>
+        <div class="n-title">Cierre contable — 1er semestre</div>
+        <div class="n-desc">Rendiciones y facturas pendientes: entregar antes del 25 de junio.</div>
+      </div>
+
+      <div class="news-card" onclick="openModal('Obras & Proyectos','Avance MIO — Torre 1 y Torre 2','Torre 1: columnas de planta baja completas, losa de entrepiso al 70%. Torre 2: núcleo central hormigonado, inicio de losas esta semana. Reporte fotográfico completo disponible en el Portal de Obras.')">
+        <span class="n-icon">📐</span>
+        <div class="n-area">Obras</div>
+        <div class="n-title">Avance de obra — MIO Torre 1 y 2</div>
+        <div class="n-desc">Torre 1 al 68% estructural. Torre 2 inicia losas. Ver reporte completo.</div>
+      </div>
+
+      <div class="news-card" onclick="openModal('Comercial & Ventas','MOVE — Nueva etapa disponible desde el 15 de junio','MOVE anuncia apertura de su segunda etapa residencial. Reservas disponibles desde el 15 de junio. Briefing de asesores: martes 17 Jun, 10 hs. Consultar kits de venta actualizados con el equipo comercial.')">
+        <span class="n-icon">🚀</span>
+        <div class="n-area">Comercial</div>
+        <div class="n-title">MOVE — Nueva etapa disponible</div>
+        <div class="n-desc">Apertura de reservas desde el 15 de junio. Briefing de asesores el 17 Jun.</div>
+      </div>
+
+      <div class="news-card" onclick="openModal('CCHH & Cultura','¡Bienvenidos a los nuevos integrantes!','Damos la bienvenida a tres nuevos integrantes: Valentina Ruiz (Diseño), Marcos Pérez (Obras) y Sofía Castro (Comercial). ¡Bienvenidos a Metrocúbico!')">
+        <span class="n-icon">👋</span>
+        <div class="n-area">CCHH</div>
+        <div class="n-title">¡Bienvenidos a los nuevos integrantes!</div>
+        <div class="n-desc">Tres nuevas incorporaciones en Diseño, Obras y Comercial este mes.</div>
+      </div>
+
+    </div>
+
+    <!-- TECNOLOGÍA -->
+    <div class="sec-label" id="tech-sec">Tecnología & Tendencias</div>
+    <div style="margin-bottom:40px">
+
+      <div class="tech-item">
+        <div class="tech-dot mostaza"></div>
+        <div>
+          <div class="tech-tag mostaza">Microsoft · IA</div>
+          <div class="tech-title">Microsoft 365 Copilot llega en julio — ¿Cómo te prepara?</div>
+          <div class="tech-desc">Copilot resume reuniones, redacta emails y analiza planillas automáticamente. IT organiza capacitaciones en junio para todo el personal.</div>
+        </div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tech-dot"></div>
+        <div>
+          <div class="tech-tag">SharePoint · Intranet</div>
+          <div class="tech-title">Nueva intranet "The Hub" — lanzamiento en agosto</div>
+          <div class="tech-desc">El equipo IT trabaja en centralizar noticias, documentos y accesos de toda la empresa en SharePoint Online.</div>
+        </div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tech-dot azul"></div>
+        <div>
+          <div class="tech-tag azul">Seguridad</div>
+          <div class="tech-title">MFA obligatorio desde el 1 de julio para todos los accesos</div>
+          <div class="tech-desc">Email, VPN y sistemas internos requerirán autenticación en dos pasos. IT enviará el instructivo de configuración esta semana.</div>
+        </div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tech-dot mostaza"></div>
+        <div>
+          <div class="tech-tag mostaza">IA Global</div>
+          <div class="tech-title">OpenAI lanza GPT-5 con capacidades multimodales avanzadas</div>
+          <div class="tech-desc">Análisis de imágenes, documentos y voz en tiempo real. Empresas del sector inmobiliario ya exploran casos de uso en atención al cliente.</div>
+        </div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tech-dot"></div>
+        <div>
+          <div class="tech-tag">Power BI</div>
+          <div class="tech-title">Dashboard de avance de obras en tiempo real disponible</div>
+          <div class="tech-desc">Nuevo tablero para seguir MIO, MIXT, MOVE y Multibox con datos diarios. Acceso por SharePoint para jefes de área.</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="welcome-card">
+      <div class="wc-day" id="wc-day">Miércoles 10 de Junio</div>
+      <div class="wc-title">Buenos días, <span>equipo</span> ☀️</div>
+      <div class="wc-sub">Todo lo que construimos hoy, alguien lo va a habitar mañana.</div>
+    </div>
+
+    <div class="sec-label">Accesos rápidos</div>
+    <div class="quick-grid">
+      <a href="#" class="quick-btn"><span class="q-icon">🎫</span><span class="q-label">Helpdesk IT</span></a>
+      <a href="#" class="quick-btn"><span class="q-icon">📅</span><span class="q-label">Calendario</span></a>
+      <a href="#" class="quick-btn"><span class="q-icon">📁</span><span class="q-label">Documentos</span></a>
+      <a href="#" class="quick-btn"><span class="q-icon">🏖️</span><span class="q-label">Licencias</span></a>
+      <a href="#" class="quick-btn"><span class="q-icon">💰</span><span class="q-label">Recibos</span></a>
+      <a href="#" class="quick-btn"><span class="q-icon">📊</span><span class="q-label">Reportes</span></a>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Proyectos activos</div>
+      <div class="proj-row">
+        <div class="proj-name">MIO — Torre 1 &amp; 2</div>
+        <div class="proj-bar"><div class="proj-fill" style="width:68%"></div></div>
+        <div class="proj-footer"><span class="proj-pct">68%</span><span class="proj-badge badge-ok">En curso</span></div>
+      </div>
+      <div class="proj-row">
+        <div class="proj-name">MIXT</div>
+        <div class="proj-bar"><div class="proj-fill azul" style="width:45%"></div></div>
+        <div class="proj-footer"><span class="proj-pct">45%</span><span class="proj-badge badge-ok">En curso</span></div>
+      </div>
+      <div class="proj-row">
+        <div class="proj-name">MOVE</div>
+        <div class="proj-bar"><div class="proj-fill mostaza" style="width:30%"></div></div>
+        <div class="proj-footer"><span class="proj-pct">30%</span><span class="proj-badge badge-warn">Inicio Q3</span></div>
+      </div>
+      <div class="proj-row">
+        <div class="proj-name">Multibox</div>
+        <div class="proj-bar"><div class="proj-fill lite" style="width:15%"></div></div>
+        <div class="proj-footer"><span class="proj-pct">15%</span><span class="proj-badge badge-init">Planif.</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Cumpleaños este mes 🎂</div>
+      <div class="bday-row">
+        <div class="bday-avatar">MR</div>
+        <div><div class="bday-name">Marcos Rodríguez</div><div class="bday-detail">Obras · 12 Jun</div></div>
+      </div>
+      <div class="bday-row">
+        <div class="bday-avatar">LA</div>
+        <div><div class="bday-name">Lucía Aragón</div><div class="bday-detail">Comercial · 18 Jun</div></div>
+      </div>
+      <div class="bday-row">
+        <div class="bday-avatar">FT</div>
+        <div><div class="bday-name">Fernando Torres</div><div class="bday-detail">Administración · 27 Jun</div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Próximos eventos</div>
+      <div class="ev-row">
+        <div class="ev-name">📚 Charla ADEN — Liderazgo</div>
+        <div class="ev-detail">Vie 20 Jun · 18:00 hs · Sede central</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-name">🏗️ Visita de obra MIXT</div>
+        <div class="ev-detail">Mié 25 Jun · 09:00 hs · Yerba Buena</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-name">🚀 Lanzamiento MOVE Etapa 2</div>
+        <div class="ev-detail">Mar 15 Jul · 11:00 hs · Sala de reuniones</div>
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <div class="q-text">"Diseñamos proyectos que transforman el entorno y elevan la calidad de vida."</div>
+      <div class="q-author">— METROCÚBICO · Más Volumen, Más Desarrollo</div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">METROCÚBICO</div>
+  <div class="ft-links">
+    <a href="#">Portal IT</a>
+    <a href="#">CCHH</a>
+    <a href="#">Políticas</a>
+    <a href="#">contacto@metrocubico.com.ar</a>
+  </div>
+  <div class="ft-copy">© 2026 Metrocúbico · Portal Interno</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeOut(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-area" id="m-area"></div>
+    <div class="modal-title" id="m-title"></div>
+    <div class="modal-body" id="m-body"></div>
+  </div>
+</div>
+
+<script>
+// Fecha dinámica
+const dias=['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const n=new Date();
+document.getElementById('live-date').textContent=`${dias[n.getDay()]} ${n.getDate()} ${meses[n.getMonth()]} ${n.getFullYear()}`;
+document.getElementById('wc-day').textContent=`${dias[n.getDay()]} ${n.getDate()} de ${meses[n.getMonth()]}`;
+
+// Carrusel
+let cc=0;const ct=4;
+const ctrack=document.getElementById('ctrack');
+const cdots=document.querySelectorAll('.cdot');
+function cGo(i){cc=(i+ct)%ct;ctrack.style.transform=`translateX(-${cc*100}%)`;cdots.forEach((d,j)=>d.classList.toggle('on',j===cc))}
+function cNav(d){cGo(cc+d)}
+setInterval(()=>cNav(1),6500);
+
+// Pill filtro
+function setPill(el,id){
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  if(id){const t=document.getElementById(id);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}
+}
+
+// Modal
+function openModal(area,title,body){
+  document.getElementById('m-area').textContent=area;
+  document.getElementById('m-title').textContent=title;
+  document.getElementById('m-body').textContent=body;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function closeOut(e){if(e.target===document.getElementById('modal'))closeModal()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
